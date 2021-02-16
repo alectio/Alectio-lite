@@ -91,8 +91,8 @@ def experiment_logger(monitor, data, config):
         _log_pickle(monitor, filename, data, mode="read")
     elif monitor == "pre_softmax" and backend_config.CUR_LOOP == "":
         filename = os.path.join(experiment_dir, "pre_softmax.pkl")
-        _remap_outs(data)
-        _log_pickle(monitor, filename, data)
+        remapped_data = _remap_outs(data)
+        _log_pickle(monitor, filename, remapped_data)
         _sweep_experiment(monitor, filename)
     elif monitor == "pre_softmax" and backend_config.CUR_LOOP >= 0:
         filename = os.path.join(
